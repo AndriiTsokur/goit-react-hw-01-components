@@ -1,16 +1,21 @@
-export const App = () => {
+import Profile from './profile/Profile';
+import userProfile from './profile/user.json';
+import Statistics from './statistics/Statistics';
+
+export default function App() {
 	return (
-		<div
-			style={{
-				height: '100vh',
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
-				fontSize: 40,
-				color: '#010101',
-			}}
-		>
-			React homework template - Tsokur Edition
-		</div>
+		<>
+			<Profile
+				username={userProfile.username}
+				tag={userProfile.tag}
+				location={userProfile.location}
+				avatar={userProfile.avatar}
+				followers={userProfile.stats.followers}
+				views={userProfile.stats.views}
+				likes={userProfile.stats.likes}
+			/>
+
+			<Statistics />
+		</>
 	);
-};
+}
