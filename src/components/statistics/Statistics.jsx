@@ -1,28 +1,14 @@
-export default function Statistics(props) {
-	const { key, title, stats } = props;
+import propTypes from 'prop-types';
 
+export default function Statistics({ title, children }) {
 	return (
 		<section className="statistics">
-			<h2 className="title">Upload stats</h2>
-
-			<ul className="stat-list">
-				<li className="item">
-					<span className="label">.docx</span>
-					<span className="percentage">4%</span>
-				</li>
-				<li className="item">
-					<span className="label">.mp3</span>
-					<span className="percentage">14%</span>
-				</li>
-				<li className="item">
-					<span className="label">.pdf</span>
-					<span className="percentage">41%</span>
-				</li>
-				<li className="item">
-					<span className="label">.mp4</span>
-					<span className="percentage">12%</span>
-				</li>
-			</ul>
+			{title && <h2 className="title">{title}</h2>}
+			<ul className="stat-list">{children}</ul>
 		</section>
 	);
 }
+
+Statistics.propTypes = {
+	title: propTypes.string,
+};
