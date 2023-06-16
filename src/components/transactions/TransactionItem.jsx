@@ -1,6 +1,6 @@
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-export default function TransactionItem({ id, type, amount, currency }) {
+export default function TransactionItem({ type, amount, currency }) {
 	return (
 		<tr>
 			<td>{type}</td>
@@ -11,8 +11,7 @@ export default function TransactionItem({ id, type, amount, currency }) {
 }
 
 TransactionItem.propTypes = {
-	id: propTypes.string,
-	type: propTypes.string.isRequired,
-	amount: propTypes.string.isRequired,
-	currency: propTypes.string.isRequired,
+	type: PropTypes.string.isRequired,
+	amount: PropTypes.string.isRequired,
+	currency: PropTypes.string.isRequired,
 };

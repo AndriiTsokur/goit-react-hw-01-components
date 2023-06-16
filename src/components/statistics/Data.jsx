@@ -1,16 +1,17 @@
-import propTypes from 'prop-types';
+import { randomColorizer } from 'utils';
+import PropTypes from 'prop-types';
+import css from './Data.module.css';
 
-export default function Data({ id, label, percentage }) {
+export default function Data({ label, percentage }) {
 	return (
-		<li className="item">
-			<span className="label">{label}</span>
-			<span className="percentage">{percentage}%</span>
+		<li className={css.item} style={{ backgroundColor: randomColorizer() }}>
+			<span className={css.label}>{label}</span>
+			<span className={css.percentage}>{percentage}%</span>
 		</li>
 	);
 }
 
 Data.propTypes = {
-	id: propTypes.string,
-	label: propTypes.string.isRequired,
-	percentage: propTypes.number.isRequired,
+	label: PropTypes.string.isRequired,
+	percentage: PropTypes.number.isRequired,
 };

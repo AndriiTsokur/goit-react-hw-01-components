@@ -1,37 +1,36 @@
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import css from './Profile.module.css';
 
-export default function Profile(props) {
+export default function Profile({ userData }) {
 	const {
 		username,
 		tag,
-		location = 'N/A',
-		avatar = 'https://cdn-icons-png.flaticon.com/512/1077/1077012.png',
-		followers = 0,
-		views = 0,
-		likes = 0,
-	} = props;
+		location,
+		avatar,
+		stats: { followers, views, likes },
+	} = userData;
 
 	return (
-		<div className="profile">
-			<div className="description">
-				<img src={avatar} alt="User avatar" className="avatar" />
-				<p className="name">{username}</p>
-				<p className="tag">@{tag}</p>
-				<p className="location">{location}</p>
+		<div className={css.profile}>
+			<div className={css.description}>
+				<img className={css.avatar} src={avatar} alt="User avatar" />
+				<p className={css.name}>{username}</p>
+				<p className={css.tag}>@{tag}</p>
+				<p className={css.location}>{location}</p>
 			</div>
 
-			<ul className="stats">
+			<ul className={css.stats}>
 				<li>
-					<span className="label">Followers</span>
-					<span className="quantity">{followers}</span>
+					<span className={css.label}>Followers</span>
+					<span className={css.quantity}>{followers}</span>
 				</li>
 				<li>
-					<span className="label">Views</span>
-					<span className="quantity">{views}</span>
+					<span className={css.label}>Views</span>
+					<span className={css.quantity}>{views}</span>
 				</li>
 				<li>
-					<span className="label">Likes</span>
-					<span className="quantity">{likes}</span>
+					<span className={css.label}>Likes</span>
+					<span className={css.quantity}>{likes}</span>
 				</li>
 			</ul>
 		</div>
@@ -39,11 +38,15 @@ export default function Profile(props) {
 }
 
 Profile.propTypes = {
-	username: propTypes.string.isRequired,
-	tag: propTypes.string.isRequired,
-	location: propTypes.string,
-	avatar: propTypes.string,
-	followers: propTypes.number,
-	views: propTypes.number,
-	likes: propTypes.number,
+	userData: PropTypes.exact({
+		username: PropTypes.string.isRequired,
+		tag: PropTypes.string.isRequired,
+		location: PropTypes.string.isRequired,
+		avatar: PropTypes.string.isRequired,
+		stats: PropTypes.exact({
+			followers: PropTypes.number.isRequired,
+			views: PropTypes.number.isRequired,
+			likes: PropTypes.number.isRequired,
+		}).isRequired,
+	}).isRequired,
 };
